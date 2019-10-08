@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Modules\Admin\Auth\Controllers;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Pub\SiteController;
 use App\Models\Script;
 use App\Models\User;
+use App\Modules\Admin\Dashboard\Classes\Base;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class ForgotPasswordController extends SiteController
+class ForgotPasswordController extends Base
 {
     /*
     |--------------------------------------------------------------------------
@@ -35,7 +36,7 @@ class ForgotPasswordController extends SiteController
     public function __construct()
     {
         $this->middleware('guest');
-        parent::__construct((new Script()));
+        parent::__construct();
     }
 
     /**

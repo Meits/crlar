@@ -9,13 +9,13 @@
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
           type="text/css">
-    <link href="{{asset('admin/global_assets/css/icons/icomoon/styles.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('admin/assets/css/bootstrap_limitless.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('admin/assets/css/layout.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('admin/assets/css/components.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('admin/assets/css/colors.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('admin/assets/css/colors.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin_assets/global_assets/css/icons/icomoon/styles.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin_assets/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin_assets/assets/css/bootstrap_limitless.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin_assets/assets/css/layout.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin_assets/assets/css/components.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin_assets/assets/css/colors.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin_assets/assets/css/colors.min.css')}}" rel="stylesheet" type="text/css">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -24,42 +24,42 @@
     {{--@include('ckfinder::setup')--}}
 
     <!-- Core JS files -->
-    <script src="{{asset('admin/global_assets/js/main/jquery.min.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/main/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/plugins/loaders/blockui.min.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/plugins/ui/ripple.min.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/main/jquery.min.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/main/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/loaders/blockui.min.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/ui/ripple.min.js')}}"></script>
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
 
-    <script src="{{asset('admin/global_assets/js/plugins/visualization/d3/d3.min.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/plugins/visualization/d3/d3_tooltip.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/visualization/d3/d3.min.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/visualization/d3/d3_tooltip.js')}}"></script>
 
-    <script src="{{asset('admin/global_assets/js/plugins/forms/selects/bootstrap_multiselect.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/plugins/ui/moment/moment.min.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/plugins/pickers/daterangepicker.js')}}"></script>
+    <script src="{{asset('admin_assets')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/ui/moment/moment.min.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/pickers/daterangepicker.js')}}"></script>
 
-    <script src="{{asset('admin/global_assets/js/plugins/forms/validation/validate.min.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/plugins/forms/inputs/touchspin.min.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/plugins/forms/selects/select2.min.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/plugins/editors/ckeditor/ckeditor.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/plugins/forms/styling/switch.min.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/plugins/forms/styling/switchery.min.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/plugins/forms/styling/uniform.min.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/plugins/notifications/noty.min.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/plugins/notifications/bootbox.min.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/plugins/visualization/c3/c3.min.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/forms/validation/validate.min.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/forms/inputs/touchspin.min.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/forms/selects/select2.min.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/editors/ckeditor/ckeditor.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/forms/styling/switch.min.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/forms/styling/switchery.min.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/forms/styling/uniform.min.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/notifications/noty.min.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/notifications/bootbox.min.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/visualization/c3/c3.min.js')}}"></script>
 
 
-    <script src="{{asset('admin/assets/js/app.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/demo_pages/form_validation.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/demo_pages/form_checkboxes_radios.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/demo_pages/components_modals.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/demo_pages/dashboard.js')}}"></script>
-    <script src="{{asset('admin/assets/js/custom.js')}}"></script>
+    <script src="{{asset('admin_assets/assets/js/app.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/demo_pages/form_validation.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/demo_pages/form_checkboxes_radios.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/demo_pages/components_modals.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/demo_pages/dashboard.js')}}"></script>
+    <script src="{{asset('admin_assets/assets/js/custom.js')}}"></script>
 
-    <script src="{{asset('admin/global_assets/js/plugins/extensions/jquery_ui/interactions.min.js')}}"></script>
-    <script src="{{asset('admin/global_assets/js/demo_pages/form_select2.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/extensions/jquery_ui/interactions.min.js')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/demo_pages/form_select2.js')}}"></script>
 
 
 

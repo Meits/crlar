@@ -14,6 +14,9 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Menu;
+use App\Modules\Admin\Menu\Models\Menu as MenuModel;
+
 
 class Base extends Controller
 {
@@ -87,7 +90,7 @@ class Base extends Controller
     protected function renderOutput() : View {
 
         //render view
-        $menu = null;//$this->getMenu();
+        $menu = $this->getMenu();
         $photo = null;//Setting::where('field','system_photo')->first()->value;
 
         if(!$this->sideBar) {
@@ -98,5 +101,52 @@ class Base extends Controller
         $this->vars = Arr::add($this->vars, 'content', $this->content);
 
         return view($this->template)->with($this->vars);
+    }
+
+    private function getMenu()
+    {
+        return Menu::make('menuRendrer', function($m)  {
+
+            foreach(MenuModel::all() as $item) {
+
+                $path = $item->path;
+                if($item->path && $this->checkRoute($item->path)) {
+                    $path = route($item->path);
+                }
+
+                if($item->parent == 0) {
+                    $m->add($item->title,$path)->id($item->id);
+                }
+
+                else {
+                    if($m->find($item->parent)) {
+                        $m->find($item->parent)->add($item->title,$path)->id($item->id);
+                    }
+                }
+            }
+
+        });
+    }
+
+    /**
+     * @param $route
+     * @return bool
+     */
+    function checkRoute($route)
+    {
+
+        if($route[0] === "/"){
+            $route = substr($route, 1);
+        }
+        $routes = \Route::getRoutes()->getRoutes();
+
+        foreach ($routes as $r) {
+            /** @var \Route $r */
+            if ($r->getName() == $route) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

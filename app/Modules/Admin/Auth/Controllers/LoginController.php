@@ -2,14 +2,13 @@
 
 namespace App\Modules\Admin\Auth\Controllers;
 
-use App\Http\Controllers\Pub\SiteController;
-use App\Models\Script;
+use App\Modules\Admin\Dashboard\Classes\Base;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
-class LoginController extends SiteController
+class LoginController extends Base
 {
 
     /*
@@ -40,8 +39,8 @@ class LoginController extends SiteController
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        parent::__construct();
 
-        //parent::__construct((new Script()));
     }
 
     /**
@@ -52,19 +51,15 @@ class LoginController extends SiteController
     public function showLoginForm()
     {
 
-        //template
-        $this->template = 'public::auth.login';
-
-        //title
-        $this->title = __("public.login_page_title");
-
-        //set session refferrer
+        /** set session refferrer */
         $this->setPreviousUrl();
 
-        //canonical url
-        $this->canonical = trim(\Request::root(), '/') . '/';
+        /** @var String $title */
+        $this->title = __("admin.pages_login_title");
+        /** @var String $content */
+        $this->template = 'Admin::Auth.login';
 
-        //render output
+        /**render output*/
         return $this->renderOutput();
     }
 

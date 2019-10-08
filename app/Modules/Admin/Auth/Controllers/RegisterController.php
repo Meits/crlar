@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Modules\Admin\Auth\Controllers;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Pub\SiteController;
@@ -8,6 +8,7 @@ use App\Mail\RegisterEmail;
 use App\Models\Script;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Modules\Admin\Dashboard\Classes\Base;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -17,7 +18,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class RegisterController extends SiteController
+class RegisterController extends Base
 {
     /*
     |--------------------------------------------------------------------------
@@ -48,7 +49,7 @@ class RegisterController extends SiteController
     {
         $this->middleware('guest')->except('logout');
 
-        parent::__construct((new Script()));
+        parent::__construct();
     }
 
     /**

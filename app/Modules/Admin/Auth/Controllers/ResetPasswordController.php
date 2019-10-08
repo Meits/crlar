@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Modules\Admin\Auth\Controllers;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Pub\SiteController;
 use App\Models\Script;
+use App\Modules\Admin\Dashboard\Classes\Base;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class ResetPasswordController extends SiteController
+class ResetPasswordController extends Base
 {
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +41,7 @@ class ResetPasswordController extends SiteController
     public function __construct()
     {
         $this->middleware('guest');
-        parent::__construct((new Script()));
+        parent::__construct();
     }
 
     /**

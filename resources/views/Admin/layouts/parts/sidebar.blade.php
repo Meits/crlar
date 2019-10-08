@@ -56,12 +56,11 @@
         </div>
         <!-- /user menu -->
 
-
         <!-- Main navigation -->
         <div class="card card-sidebar-mobile">
             @if($menu)
                 <ul class="nav nav-sidebar" data-nav-type="accordion">
-                    @include('administrator::layouts.parts.customMenuItems',['items'=>$menu->roots()])
+                    @include('Admin::layouts.parts.customMenuItems',['items'=>$menu->roots()])
                 </ul>
             @endif
         </div>

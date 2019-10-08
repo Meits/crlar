@@ -16,6 +16,8 @@ return [
 
     'modules' => [
         'Admin' => [
+            'Pages',
+            'Menu',
             'Faq',
             'Dashboard',
             'Auth',
