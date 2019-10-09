@@ -21,8 +21,6 @@ $modules = config('modular.modules');
 $path = config('modular.path');
 $base_namespace = config('modular.base_namespace');
 
-
-
         if ($modules) {
             foreach ($modules as $mod => $submodules) {
                 foreach ($submodules as $key => $sub) {
@@ -34,10 +32,18 @@ $base_namespace = config('modular.base_namespace');
                     $routesPath = "{$path}{$relativePath}/Routes/web.php";
 
                     if (file_exists($routesPath)) {
-                        Route::group(['prefix' => strtolower($mod)], function () use ($mod, $sub, $routesPath) {
-                            Route::namespace("Modules\\$mod\\$sub\Controllers")
+                        if($mod != config('modular.groupWithoutPrefix')) {
+                            Route::group(['prefix' => strtolower($mod)], function () use ($mod, $sub, $routesPath) {
+                                Route::namespace("Modules\\$mod\\$sub\\Controllers")
+                                    ->group($routesPath);
+                            });
+                        }
+                        else {
+
+                            Route::namespace("Modules\\$mod\\$sub\\Controllers")
                                 ->group($routesPath);
-                        });
+                        }
+
                     }
                 }
             }

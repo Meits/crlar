@@ -115,16 +115,22 @@ class Base extends Controller
                 }
 
                 if($item->parent == 0) {
-                    $m->add($item->title,$path)->id($item->id);
+                    $m->add($item->title,$path)->id($item->id)->data('permissions', $this->getPermissions($item));
                 }
 
                 else {
                     if($m->find($item->parent)) {
-                        $m->find($item->parent)->add($item->title,$path)->id($item->id);
+                        $m->find($item->parent)->add($item->title,$path)->id($item->id)->data('permissions', $this->getPermissions($item));
                     }
                 }
             }
 
+        })->filter(function ($item) {
+
+            if ($this->user && $this->user->canDo($item->data('permissions'))) {
+                return true;
+            }
+            return false;
         });
     }
 
@@ -148,5 +154,16 @@ class Base extends Controller
         }
 
         return false;
+    }
+
+    /**
+     * @param MenuModel $item
+     * @return Array
+     */
+    private function getPermissions(\App\Modules\Admin\Menu\Models\Menu $item) : Array
+    {
+        return $item->perms->map(function($item) {
+            return $item->alias;
+        })->toArray();
     }
 }
