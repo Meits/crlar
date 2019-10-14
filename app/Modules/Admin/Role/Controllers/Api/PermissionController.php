@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Modules\Admin\Permission\Controllers\Api;
+namespace App\Modules\Admin\Role\Controllers\Api;
 
-use App\Modules\Admin\Permission\Models\Permission;
+use App\Modules\Admin\Role\Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

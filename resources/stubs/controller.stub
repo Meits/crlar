@@ -19,6 +19,16 @@ class DummyClass extends Controller
     }
 
     /**
+     * Create of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -35,6 +45,16 @@ class DummyClass extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Edit resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
         //
     }
