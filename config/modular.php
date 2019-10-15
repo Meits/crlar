@@ -17,6 +17,7 @@ return [
 
     'modules' => [
         'Admin' => [
+            'Language',
             'Email',
             'Setting',
             'Blog',
@@ -34,6 +35,7 @@ return [
 
         ],
         'Common' => [
+            'Localization',
 
         ]
     ]
