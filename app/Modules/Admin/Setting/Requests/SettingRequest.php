@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modules\Admin\Pages\Requests;
+namespace App\Modules\Admin\Setting\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class PageRequest extends FormRequest
+class SettingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class PageRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->canDo(['SUPER_ADMINISTRATOR','PAGES_ACCESS']);
+        return Auth::user()->canDo(['ADMINISTRATOR_ACCESS','SUPER_ADMINISTRATOR']);
     }
 
     /**

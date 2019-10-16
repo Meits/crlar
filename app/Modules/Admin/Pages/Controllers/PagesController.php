@@ -45,8 +45,10 @@ class PagesController extends Base
         /** @var String $title */
         $this->title = trans("admin.pages_create_title");
 
+        $languages = Language::all();
+
         /** @var String $content */
-        $this->content = view('Admin::Pages.create')->with(['title' => $this->title])->render();
+        $this->content = view('Admin::Pages.create')->with(['title' => $this->title,'languages' => $languages])->render();
 
         //render output
         return $this->renderOutput();
@@ -65,15 +67,26 @@ class PagesController extends Base
         /** @var Role $role */
         $page = new Page();
         //store model
-        $page->fill($request->except('_token','alias'));
+        $page->fill($request->except('_token','alias','localization'));
         $page->alias = $request->alias;
+
+        $localization = collect($request->localization);
 
         if(!$request->alias) {
             $urlService = new UrlService(new Page());
-            $page->alias = $urlService->getAlias($request->title);
+            if($localization->first()) {
+                $page->alias = $urlService->getAlias($localization->first()['title']);
+            }
         }
+
         $page->related_entity = $page->alias;
         $page->save();
+
+        foreach($localization as $k => $i) {
+            /** @var PageLocalization $locale */
+            $page->localizations()
+                ->create($i + ['language_id' => $k]);
+        }
 
         /** @return Redirect */
         return \Redirect::route('pages.index')
@@ -139,8 +152,15 @@ class PagesController extends Base
     public function update(PageRequest $request, Page $page)
     {
         //update page
-        $page->fill($request->except('fields', '_token'));
+        $page->fill($request->except('fields', '_token', 'localization'));
         $page->update();
+
+        $localization = collect($request->localization);
+        foreach($localization as $k => $i) {
+            /** @var PageLocalization $locale */
+            $locale = $page->localizations()
+                ->updateOrCreate(['language_id' => $k], $i);
+        }
 
         //check page fields
         if ($request->fields) {

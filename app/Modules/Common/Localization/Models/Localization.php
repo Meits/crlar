@@ -12,7 +12,7 @@ namespace App\Modules\Common\Localization\Traits;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-trait Localization
+class Localization extends Model
 {
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

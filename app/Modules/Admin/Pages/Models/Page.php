@@ -17,7 +17,7 @@ class Page extends Localization
      */
     public function datas()
     {
-        return $this->hasMany('App\Models\Data');
+        return $this->hasMany(Data::class);
     }
 
     /**
@@ -30,7 +30,7 @@ class Page extends Localization
 
     public function multifields($alias)
     {
-        return $this->hasMany('App\Models\Data')->where('field_id', '=', '9')->where('alias','like', $alias) ;
+        return $this->hasMany(Data::class)->where('field_id', '=', '9')->where('alias','like', $alias) ;
     }
 
 }

@@ -1,6 +1,6 @@
 <!-- Page header -->
 <form class="form-validate-jquery" enctype="multipart/form-data" method="post"
-      action="{{ route('pages.update',['id'=>$page->id]) }}">
+      action="{{ route('pages.update',['page'=>$page->id]) }}">
     <div class="page-header page-header-light">
         <div class="page-header-content header-elements-md-inline">
             <div class="page-title d-flex">
