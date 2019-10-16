@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CreateEmailsTable::class);
         $this->call(CreatePermissionsRoles::class);
         $this->call(CreateRolesUsers::class);
+        $this->call(AddLanguages::class);
     }
 }

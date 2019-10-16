@@ -5,9 +5,8 @@ namespace App\Modules\Admin\Pages\Models;
 use App\Modules\Common\Localization\Traits\Localization;
 use Illuminate\Database\Eloquent\Model;
 
-class Page extends Model
+class Page extends Localization
 {
-    use Localization;
 
     protected $fillable = [
         'alias',
