@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Modules\Admin\Email\Models\Email;
+use App\Modules\Admin\Email\Policies\EmailPolicy;
 use App\Modules\Admin\Pages\Models\Page;
 use App\Modules\Admin\Pages\Policies\PagePolicy;
 use App\Modules\Admin\Role\Models\Role;
@@ -19,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Role::class => RolePolicy::class,
         Page::class => PagePolicy::class,
+        Email::class => EmailPolicy::class
 
     ];
 

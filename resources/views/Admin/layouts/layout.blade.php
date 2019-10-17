@@ -23,7 +23,7 @@
 
     {{--@include('ckfinder::setup')--}}
 
-    <!-- Core JS files -->
+<!-- Core JS files -->
     <script src="{{asset('admin_assets/global_assets/js/main/jquery.min.js')}}"></script>
     <script src="{{asset('admin_assets/global_assets/js/main/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('admin_assets/global_assets/js/plugins/loaders/blockui.min.js')}}"></script>
@@ -35,7 +35,7 @@
     <script src="{{asset('admin_assets/global_assets/js/plugins/visualization/d3/d3.min.js')}}"></script>
     <script src="{{asset('admin_assets/global_assets/js/plugins/visualization/d3/d3_tooltip.js')}}"></script>
 
-    <script src="{{asset('admin_assets')}}"></script>
+    <script src="{{asset('admin_assets/global_assets/js/plugins/forms/selects/bootstrap_multiselect.js')}}"></script>
     <script src="{{asset('admin_assets/global_assets/js/plugins/ui/moment/moment.min.js')}}"></script>
     <script src="{{asset('admin_assets/global_assets/js/plugins/pickers/daterangepicker.js')}}"></script>
 
@@ -76,10 +76,12 @@
                     console.warn('Warning - bootstrap-multiselect.js is not loaded.');
                     return;
                 }
+
                 // Basic examples
                 // ------------------------------
                 // Limit options number
                 if($('.multiselect').length) {
+
                     $('.multiselect').multiselect({
                         numberDisplayed: 4,
                         onChange: function(option, checked) {

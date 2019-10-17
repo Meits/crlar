@@ -32,14 +32,43 @@ class SettingController extends Base
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $this->title = __('admin.new_settings_page_title');
+
+        //content index page
+        $this->content =  view('Admin::Setting.create')->with(['title'=>$this->title])->render();
+
+        return $this->renderOutput();
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SettingRequest $request)
     {
-        //
+        /** @var Role $role */
+        $setting = new Setting();
+        //store model
+        $setting->fill($request->except('_token'));
+        $setting->save();
+
+        /** @return Redirect */
+        // redirect back to page
+        return \back()
+            ->with(
+                [
+                    'message' => \trans('admin.settings_update_success_message'),
+                    'status' => 'success',
+                ]
+            );
     }
 
     /**
