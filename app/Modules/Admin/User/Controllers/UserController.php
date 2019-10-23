@@ -2,12 +2,13 @@
 
 namespace App\Modules\Admin\User\Controllers;
 
+use App\Modules\Admin\Dashboard\Classes\Base;
 use App\Modules\Admin\Role\Models\Role;
 use App\Modules\Admin\User\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+class UserController extends Base
 {
 
     /**
@@ -45,7 +46,7 @@ class UserController extends Controller
         $this->title = __("admin.users_page_title");
 
         /** @var String $content */
-        $this->content = view('Admin::Users.index')
+        $this->content = view('Admin::User.index')
             ->with([
                 'statuses' => self::STATUSES,
                 'moderate' => self::MODERATE,

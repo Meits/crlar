@@ -5,6 +5,7 @@ namespace App\Modules\Admin\User\Models;
 use App\Modules\Admin\Role\Models\Role;
 use App\Modules\Admin\Role\Models\Traits\UserRoles;
 use App\Modules\Admin\User\Models\Scopes\DeleteUserScope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,7 +21,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstname',
+        'email',
+        'password',
+        'lastname',
+        'phone',
+        'status',
+        'token',
+        'is_moderate',
     ];
 
     /**
@@ -39,6 +47,10 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    protected $dates = [
+        'sms_expired'
     ];
 
     /**
@@ -66,6 +78,45 @@ class User extends Authenticatable
      */
     public function getUserByEmail($email) {
         return $this->where('email',$email)->first();
+    }
+
+    /**
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function scopeUserByPhone(Builder $builder, $phone): Builder
+    {
+        $phone = str_replace(")+",") ",$phone);
+        return $builder->where('phone', $phone);
+    }
+
+    public function getUser($email, $phone)
+    {
+
+        if ($email) {
+            return $this->where('email', $email)->first();
+        } else if ($phone) {
+            return $this->where('phone', $phone)->first();
+        } else if ($email && $phone) {
+            return $this->where('email', $email)->orWhere('phone', $phone)->first();
+        }
+
+        return null;
+
+    }
+
+    public function getUserBySms($code)
+    {
+
+        if ($code) {
+            return $this
+                ->whereDate('sms_expired', '<=' ,Carbon::now()->format('Y-m-d H:i:s'))
+                ->where('sms_code', $code)
+                ->first();
+        }
+
+        return null;
+
     }
 
 }
