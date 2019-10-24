@@ -47,7 +47,8 @@ class UserRequest extends FormRequest
             'lastname' => 'required',
             'email' => 'required',
             'phone' => 'required',
-            'photo' => 'image'
+            'role_id' => 'required',
+            'status' => 'required'
         ];
     }
 }

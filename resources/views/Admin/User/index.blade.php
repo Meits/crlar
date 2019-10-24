@@ -107,7 +107,6 @@
                         <th>{{ __('admin.users_th6') }}</th>
                         <th>{{ __('admin.users_th7') }}</th>
                         <th>{{ __('admin.users_th8') }}</th>
-                        <th>{{ __('admin.users_th81') }}</th>
                         <th>{{ __('admin.users_th9') }}</th>
                     </tr>
                     </thead>

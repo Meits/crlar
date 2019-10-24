@@ -27,8 +27,7 @@ class User extends Authenticatable
         'lastname',
         'phone',
         'status',
-        'token',
-        'is_moderate',
+        'token'
     ];
 
     /**

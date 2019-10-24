@@ -5,6 +5,8 @@ namespace App\Modules\Admin\User\Controllers;
 use App\Modules\Admin\Dashboard\Classes\Base;
 use App\Modules\Admin\Role\Models\Role;
 use App\Modules\Admin\User\Models\User;
+use App\Modules\Admin\User\Requests\UserRequest;
+use App\Modules\Admin\User\Services\UserService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -69,6 +71,7 @@ class UserController extends Base
      */
     public function create()
     {
+
         /** @var String $title */
         $this->title = __("admin.user_create_title");
         $isStatus = null;
@@ -76,7 +79,7 @@ class UserController extends Base
         $roles = Role::all();
 
         /** @var String $content */
-        $this->content = view('Admin::Users.create')
+        $this->content = view('Admin::User.create')
             ->with([
                 'isStatus' => $isStatus,
                 'statuses' => self::STATUSES,
@@ -94,24 +97,19 @@ class UserController extends Base
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(UserRequest $request, UserService $userService)
     {
-        /** @var User $user */
-        $user = new User();
-        //store model
-        $user->fill($request->except('_token','role_id','password'));
-        $user->password = bcrypt($request->input('password'));
-        $user->save();
-        $user->roles()->attach($request->input('role_id'));
 
-        /** @return Redirect */
-        return \Redirect::route('users.index')
-            ->with(
-                [
-                    'message' => \trans('admin.users_create_success_message'),
-                    'status' => 'success',
-                ]
-            );
+        if($userService->create($request)) {
+            /** @return Redirect */
+            return \Redirect::route('users.index')
+                ->with(
+                    [
+                        'message' => \trans('admin.users_create_success_message'),
+                        'status' => 'success',
+                    ]
+                );
+        }
     }
 
     /**
@@ -128,7 +126,7 @@ class UserController extends Base
         $roles = Role::all();
 
         /** @var String $content */
-        $this->content = view('Admin::Users.edit')
+        $this->content = view('Admin::User.edit')
             ->with([
                 'isStatus' => $isStatus,
                 'statuses' => self::STATUSES,
@@ -159,20 +157,10 @@ class UserController extends Base
      * @param  \App\Modules\Admin\User\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, User $user)
+    public function update(UserRequest $request, User $user, UserService $userService)
     {
-        $oldModerate = $user->is_moderate;
-        $user->fill($request->except('_token', 'password', 'role_id'));
-        if($request->input('password')) {
-            $user->password = bcrypt($request->input('password'));
-        }
-        if($user->save()) {
-            $user->roles()->sync($request->input('role_id'));
 
-            if($user->is_moderate == "1" && $oldModerate == "0") {
-                event(new ModerateConfirm($user));
-            }
-
+        if($userService->update($request, $user)) {
             /** @return Redirect */
             return \Redirect::route('users.index')
                 ->with(
