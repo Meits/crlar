@@ -4,6 +4,7 @@ namespace App\Modules\Admin\User\Controllers;
 
 use App\Modules\Admin\Dashboard\Classes\Base;
 use App\Modules\Admin\Role\Models\Role;
+use App\Modules\Admin\User\Models\Filters\UserSearch;
 use App\Modules\Admin\User\Models\User;
 use App\Modules\Admin\User\Requests\UserRequest;
 use App\Modules\Admin\User\Services\UserService;
@@ -35,15 +36,16 @@ class UserController extends Base
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, User $user)
+    public function index(Request $request, UserSearch $userSearch)
     {
         $search = $request->input('search');
         $roleId = $request->input('role_id');
         $isModerate = $request->input('is_moderate');
         $isStatus = $request->input('status',null);
 
-        $users = $user->getUsersBySearch($request)->paginate(config('settings.paginate_admin'))->appends(request()->input());
+        //$users = $user->getUsersBySearch($request)->paginate(config('settings.paginate_admin'))->appends(request()->input());
 
+        $users = $userSearch->apply($request)->paginate(config('settings.paginate_admin'))->appends(request()->input());
         /** @var String $title */
         $this->title = __("admin.users_page_title");
 
