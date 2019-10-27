@@ -118,39 +118,6 @@ class User extends Authenticatable
 
     }
 
-    public function getUsersBySearch($request)
-    {
-
-        $result = $this->select("*");
-
-        if ($request->search) {
-
-            $result->where(function ($query) use ($request) {
-                $query->where('firstname', 'like', '%' . $request->search . '%')
-                    ->orWhere('email', 'like', '%' . $request->search . '%')
-                    ->orWhere('lastname', 'like', '%' . $request->search . '%')
-                    ->orWhere('phone', 'like', '%' . $request->search . '%');
-            });
-
-        }
-
-        if ($request->role_id) {
-            $result->whereHas('roles', function ($query) use ($request) {
-                $query->where('roles.id', $request->role_id);
-            });
-        }
-
-        if ($request->is_moderate !== "" && $request->is_moderate !== null) {
-            $result->where('is_moderate', $request->is_moderate);
-        }
-
-        if($request->status !== "" && $request->status!== null) {
-            $result->where('status',$request->status);
-        }
-
-        return $result;
-    }
-
 
     /**
      * Confirm the user.

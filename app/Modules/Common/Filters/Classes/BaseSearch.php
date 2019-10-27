@@ -49,6 +49,9 @@ trait BaseSearch
     private  function applyDecoratorsFromRequest(Request $request, Builder $query)
     {
         foreach ($request->all() as $filterName => $value) {
+            if(!$value) {
+                continue;
+            }
             $decorator = $this->createFilterDecorator($filterName);
 
             if (static::isValidDecorator($decorator)) {

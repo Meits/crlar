@@ -42,7 +42,7 @@
                     @if($roles)
                         <div class="col-lg-2">
                             <div class="input-group">
-                                <select name="role_id" class="form-control multiselect"  data-fouc>
+                                <select name="role" class="form-control multiselect"  data-fouc>
                                     <option  value="">{{__('admin.not_selected')}}</option>
                                     @foreach($roles as $key => $role)
                                         <option
@@ -56,15 +56,6 @@
                         </div>
                     @endif
 
-                    <div class="col-lg-2">
-                        <div class="input-group">
-                            <select name="is_moderate" class="form-control multiselect" data-fouc>
-                                <option  value="">{{__('admin.not_selected')}}</option>
-                                <option @if($isModerate == '1') selected @endif value="1">{{__('admin.users_form_moderate')}}</option>
-                                <option @if($isModerate == '0') selected @endif value="0">{{__('admin.users_form_not_moderate')}}</option>
-                            </select>
-                        </div>
-                    </div>
                     @if($statuses)
                         <div class="col-lg-2">
                             <div class="input-group">
