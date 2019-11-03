@@ -182,6 +182,9 @@ return [
 
         Lavary\Menu\ServiceProvider::class,
 
+        \App\Providers\SettingsServiceProvider::class,
+        \App\Providers\ObserverServiceProvider::class,
+
     ],
 
     /*

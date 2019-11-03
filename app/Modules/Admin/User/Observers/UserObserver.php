@@ -3,8 +3,8 @@ declare(strict_types = 1);
 
 namespace App\Modules\Admin\User\Observers;
 
-use App\Events\Moderate;
-use App\Models\User;
+use App\Modules\Admin\User\Events\Moderate;
+use App\Modules\Admin\User\Models\User;
 use Illuminate\Auth\Events\Registered;
 
 class UserObserver

@@ -4,6 +4,7 @@ namespace App\Modules\Admin\Faq\Controllers;
 
 use App\Modules\Admin\Dashboard\Classes\Base;
 use App\Modules\Admin\Faq\Models\Faq;
+use App\Modules\Admin\Language\Models\Language;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -17,16 +18,17 @@ class FaqController extends Base
     public function index()
     {
         /** @var Faq $faq */
-        $faq = Faq::orderBy('created_at', 'DESC')->paginate(config('settings.paginate_admin'));
+        $faq = Faq::with('localization')->orderBy('created_at', 'DESC')->paginate(config('settings.paginate_admin'));
 
         /** @var String $title */
-        $this->title = "Faq";
+        $this->title = __("admin.faq_page_title");
 
         /** @var String $content */
         $this->content = view('Admin::Faq.index')->with(['faqs' => $faq, 'title' => $this->title])->render();
 
         //render output
         return $this->renderOutput();
+
     }
 
     /**
@@ -68,7 +70,7 @@ class FaqController extends Base
                 ->create($i + ['language_id' => $k]);
         }
 
-        return\Redirect::route('faq.index')
+        return\Redirect::route('faqs.index')
             ->with(
                 [
                     'message' => \trans('admin.pages_update_success_message'),

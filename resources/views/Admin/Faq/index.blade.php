@@ -38,11 +38,11 @@
                             <td>{!! $faq->localization->text ?? "" !!}</td>
 
                             <td>
-                                <a href="{{route('faq.edit',['page'=>$faq->id])}}"
+                                <a href="{{route('faqs.edit',['faq'=>$faq->id])}}"
                                    class="btn btn-primary btn-labeled btn-labeled-left btn-lg legitRipple"><b><i
                                                 class="icon-pin-alt"></i></b>{{ __('admin.pages_edit_button_label') }}
                                 </a>
-                                <a data-app-id="{{$faq->id}}" href="{{route('faqs.destroy',['faq'=>$faq->id])}}"
+                                <a data-app-id="{{$faq->id}}" href="{{route('faqs.delete',['faq'=>$faq->id])}}"
                                    class="btn btn-danger btn-labeled btn-labeled-left btn-lg legitRipple" data-toggle="modal" data-target="#confirm_delete_contacts"><b><i
                                                 class="icon-pin-alt"></i></b>{{ __('admin.faq_delete_button_label') }}
                                 </a>

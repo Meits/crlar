@@ -5,6 +5,7 @@ namespace App\Modules\Admin\User\Models;
 use App\Modules\Admin\Role\Models\Role;
 use App\Modules\Admin\Role\Models\Traits\UserRoles;
 use App\Modules\Admin\User\Models\Scopes\DeleteUserScope;
+use App\Modules\Admin\User\Notifications\ResetPassword;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
