@@ -17,6 +17,7 @@ return [
 
     'modules' => [
         'Admin' => [
+            'Sources',
             'Language',
             'Email',
             'Setting',
