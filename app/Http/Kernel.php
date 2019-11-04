@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\Cors;
+use App\Http\Middleware\PreflightResponse;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -42,7 +43,8 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
-            'cors' => Cors::class
+            'cors' => Cors::class,
+            'preFlight' => PreflightResponse::class
         ],
     ];
 
