@@ -37,7 +37,18 @@ class SourcesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //check access
+        //$this->authorize('save', Source::class);
+
+        /** @var User $user */
+        $source = Source::create([
+            'title' => $request->title,
+        ]);
+
+        //send response
+        return response()->json(
+            $source
+        );
     }
 
     /**
@@ -71,7 +82,16 @@ class SourcesController extends Controller
      */
     public function update(Request $request, Source $source)
     {
-        exit('ku');
+        //$this->authorize('edit', $source);
+
+        //update unit
+        $source->fill($request->all());
+        $source->update();
+
+        //send response
+        return response()->json(
+            $source
+        );
     }
 
     /**
@@ -82,6 +102,8 @@ class SourcesController extends Controller
      */
     public function destroy(Source $source)
     {
-        //
+        //$this->authorize('edit', $source);
+        //delete unit
+        $source->delete();
     }
 }
