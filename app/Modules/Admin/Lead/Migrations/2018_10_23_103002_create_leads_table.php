@@ -17,9 +17,9 @@ class CreateLeadsTable extends Migration
             $table->increments('id');
             $table->string('link')->nullable(true);
             $table->string('phone')->nullable(true);
-            $table->integer('source_id')->unsigned()->nullable();
-            $table->integer('unit_id')->unsigned()->nullable();
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('source_id')->unsigned();
+            $table->integer('unit_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->integer('count_create')->default(0);
             $table->enum('is_processed',['0','1'])->default('0');
             $table->timestamps();

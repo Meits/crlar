@@ -2,6 +2,9 @@
 
 namespace App\Modules\LeadComment\Models;
 
+use App\Modules\Admin\Lead\Models\Status;
+use App\Modules\Admin\User\Models\User;
+use App\Modules\Lead\Models\Lead;
 use Illuminate\Database\Eloquent\Model;
 
 class LeadComment extends Model
@@ -17,7 +20,7 @@ class LeadComment extends Model
      */
     public function lead()
     {
-        return $this->belongsTo('App\Models\Lead');
+        return $this->belongsTo(Lead::class);
     }
 
     /**
@@ -25,7 +28,7 @@ class LeadComment extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -33,6 +36,6 @@ class LeadComment extends Model
      */
     public function status()
     {
-        return $this->belongsTo('App\Models\Status');
+        return $this->belongsTo(Status::class);
     }
 }

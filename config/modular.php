@@ -30,6 +30,7 @@ return [
             'Faq',
             'Dashboard',
             'Auth',
+            'Lead',
 
         ],
         'Pub' => [

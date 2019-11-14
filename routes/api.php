@@ -13,14 +13,9 @@ use Illuminate\Http\Request;
 */
 
 
-Route::options('/{any}', function(){ return ''; })->where('any', '.*');
-
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-
 
 
 $modules = config('modular.modules');
@@ -50,4 +45,6 @@ $base_namespace = config('modular.base_namespace');
             }
         }
 
+
+Route::options('/{any}', function(){ return ''; })->where('any', '.*');
 

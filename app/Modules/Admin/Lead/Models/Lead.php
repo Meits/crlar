@@ -2,6 +2,11 @@
 
 namespace App\Modules\Lead\Models;
 
+use App\Modules\Admin\Lead\Models\Status;
+use App\Modules\Admin\Sources\Models\Source;
+use App\Modules\Admin\Unit\Models\Unit;
+use App\Modules\Admin\User\Models\User;
+use App\Modules\LeadComment\Models\LeadComment;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Scope;
@@ -25,7 +30,7 @@ class Lead extends Model
      */
     public function statuses()
     {
-        return $this->belongsToMany('App\Models\Status');
+        return $this->belongsToMany(Status::class);
     }
 
     /**
@@ -79,7 +84,7 @@ class Lead extends Model
      */
     public function status()
     {
-        return $this->belongsTo('App\Models\Status');
+        return $this->belongsTo(Status::class);
     }
 
     /**
@@ -87,7 +92,7 @@ class Lead extends Model
      */
     public function source()
     {
-        return $this->belongsTo('App\Models\Source');
+        return $this->belongsTo(Source::class);
     }
 
     /**
@@ -95,7 +100,7 @@ class Lead extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -103,7 +108,7 @@ class Lead extends Model
      */
     public function unit()
     {
-        return $this->belongsTo('App\Models\Unit');
+        return $this->belongsTo(Unit::class);
     }
 
 
@@ -112,7 +117,7 @@ class Lead extends Model
      */
     public function comments()
     {
-        return $this->hasMany('App\Models\LeadComment');
+        return $this->hasMany(LeadComment::class);
     }
 
     /**

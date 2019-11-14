@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLeadComentsTable extends Migration
+class ChangeStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateLeadComentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lead_comments', function (Blueprint $table) {
-            $table->increments('id');
-            $table->text('text');
-            $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->timestamps();
+        Schema::table('statuses', function (Blueprint $table) {
+            //
+            $table->string('title_ru');
         });
     }
 
@@ -28,6 +26,8 @@ class CreateLeadComentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lead_coments');
+        Schema::table('lead_comments', function (Blueprint $table) {
+            //
+        });
     }
 }

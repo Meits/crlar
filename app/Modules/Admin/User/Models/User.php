@@ -2,6 +2,7 @@
 
 namespace App\Modules\Admin\User\Models;
 
+use App\Modules\Admin\Lead\Models\Traits\UserLeadsTrait;
 use App\Modules\Admin\Role\Models\Role;
 use App\Modules\Admin\Role\Models\Traits\UserRoles;
 use App\Modules\Admin\User\Models\Scopes\DeleteUserScope;
@@ -14,7 +15,7 @@ use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
-    use Notifiable, UserRoles;
+    use Notifiable, UserRoles, UserLeadsTrait;
 
     /**
      * The attributes that are mass assignable.

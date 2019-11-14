@@ -9,10 +9,10 @@
 namespace App\Modules\LeadComment\Services;
 
 
-use App\Models\Lead;
-use App\Models\LeadComment;
-use App\Models\Status;
-use App\Models\User;
+use App\Modules\Admin\Lead\Models\Status;
+use App\Modules\Admin\User\Models\User;
+use App\Modules\Lead\Models\Lead;
+use App\Modules\LeadComment\Models\LeadComment;
 use phpDocumentor\Reflection\Types\Boolean;
 
 class LeadCommentService

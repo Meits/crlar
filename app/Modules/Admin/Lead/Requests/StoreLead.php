@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Lead\Requests;
+namespace App\Modules\Admin\Lead\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,8 +24,8 @@ class StoreLead extends FormRequest
     public function rules()
     {
         return [
-            'link'=>'required_without:phone',
-            'phone'=>'required_without:link',
+            'link'=>'required_without:linkPhone.phone',
+            'phone'=>'required_without:linkPhone.link',
             'source_id'=>'required|integer',
             'unit_id'=>'required|integer',
             'is_processed'=>'required|string',

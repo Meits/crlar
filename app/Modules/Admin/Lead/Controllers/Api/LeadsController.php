@@ -1,19 +1,15 @@
 <?php
 
-namespace App\Modules\Lead\Controllers\Api;
+namespace App\Modules\Admin\Lead\Controllers\Api;
 
-use App\Http\Requests\StoreLead;
-use App\Models\Lead;
-use App\Models\LeadComment;
-use App\Models\Status;
-use App\Models\User;
-use App\Services\LeadCommentService;
+use App\Modules\Admin\Lead\Models\Status;
+use App\Modules\Admin\Lead\Requests\StoreLead;
+use App\Modules\Lead\Models\Lead;
+use App\Modules\LeadComment\Services\LeadCommentService;
 use Carbon\Carbon;
-use Doctrine\DBAL\Query\QueryBuilder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class LeadsController extends Controller
 {
@@ -179,6 +175,7 @@ class LeadsController extends Controller
      */
     public function store(StoreLead $request)
     {
+
         //check access
         $this->authorize('save', Lead::class);
 
@@ -209,9 +206,9 @@ class LeadsController extends Controller
 
 
         //lead save status new
-        /*if($status) {
+        if($status) {
             $lead->statuses()->attach($status->id,['created_at' => Carbon::now(),'updated_at' => Carbon::now()]);
-        }*/
+        }
 
         //send response
         return response()->json([
