@@ -429,6 +429,9 @@ class LeadsController extends Controller
         //
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getDddSalesCount() {
 
         /** @var int $count */
@@ -436,10 +439,17 @@ class LeadsController extends Controller
         /** @var User $user */
         $user = Auth::user();
 
-        $count = $user->leads()->where('is_add_sale', '1')->where('isQualityLead', '1')->where(\DB::raw('DATE_FORMAT(created_at,"%Y-%m-%d")'), '>', \DB::raw('DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)'))->count();
+        $count = $user->
+                    leads()->
+                    where('is_add_sale', '1')->
+                    where('isQualityLead', '1')->
+                    where(\DB::raw('DATE_FORMAT(created_at,"%Y-%m-%d")'), '>', \DB::raw('DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)'))->
+                    count();
 
         return response()->json([
-            'count' => $count
+            'data' => [
+                'number' => $count
+            ]
         ]);
     }
 

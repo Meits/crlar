@@ -105,5 +105,12 @@ class SourcesController extends Controller
         //$this->authorize('edit', $source);
         //delete unit
         $source->delete();
+        return response()->json(
+            [
+                'status' => 'success',
+                'error' => [],
+                'data' => []
+            ]
+        );
     }
 }
