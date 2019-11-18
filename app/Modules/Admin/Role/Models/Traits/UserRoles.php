@@ -9,6 +9,7 @@
 namespace App\Modules\Admin\Role\Models\Traits;
 
 
+use App\Modules\Admin\Role\Models\Permission;
 use App\Modules\Admin\Role\Models\Role;
 use Illuminate\Support\Str;
 
@@ -19,6 +20,25 @@ trait UserRoles
      */
     public function roles() {
         return $this->belongsToMany(Role::class,'role_user');
+    }
+
+    /**
+     * Get all of the posts for the country.
+     */
+    public function getMergedPermissions() {
+        $permissions = array();
+        foreach ($this->getRoles() as $group) {
+            $permissions = array_merge($permissions, $group->perms()->get()->toArray());
+        }
+        return $permissions;
+    }
+
+    public function getRoles() {
+        $roles = [];
+        if ($this->roles()) {
+            $roles = $this->roles()->get();
+        }
+        return $roles;
     }
 
     /**
