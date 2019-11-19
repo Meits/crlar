@@ -135,6 +135,7 @@ class LeadsController extends Controller
     /**
      * Check exit lead.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function checkExist(Request $request)

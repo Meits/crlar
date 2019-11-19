@@ -3,9 +3,10 @@
 Route::group(['prefix' => 'leads', 'middleware' => ['auth:api']], function () {
     Route::get('/', 'Api\LeadsController@index')->name('api.leads.index');
     Route::post('/', 'Api\LeadsController@store')->name('api.leads.store');
-    Route::get('/{page}', 'Api\LeadsController@show')->name('api.leads.read');
-    Route::put('/{page}', 'Api\LeadsController@update')->name('api.leads.update');
-    Route::delete('/{page}', 'Api\LeadsController@destroy')->name('api.leads.delete');
+    Route::get('/{lead}', 'Api\LeadsController@show')->name('api.leads.read');
+    Route::put('/{lead}', 'Api\LeadsController@update')->name('api.leads.update');
+    Route::delete('/{lead}', 'Api\LeadsController@destroy')->name('api.leads.delete');
 
     Route::get('/addSale/count', 'Api\LeadsController@getDddSalesCount')->name('leads-add-sales-count');
+    Route::post('/create/check', 'Api\LeadsController@checkExist')->name('leads.create.check');
 });

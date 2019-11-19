@@ -80,7 +80,7 @@ class RouteServiceProvider extends ServiceProvider
             ],
             function () {
                 Route::prefix('api')
-                    ->middleware(['api','cors'])
+                    ->middleware(['cors','api'])
                     ->namespace($this->namespace)
                     ->group(base_path('routes/api.php'));
 
