@@ -9,6 +9,8 @@ use App\Modules\Admin\Pages\Models\Page;
 use App\Modules\Admin\Pages\Policies\PagePolicy;
 use App\Modules\Admin\Role\Models\Role;
 use App\Modules\Admin\Role\Policies\RolePolicy;
+use App\Modules\Admin\User\Models\User;
+use App\Modules\Admin\User\Policies\UserPolicy;
 use App\Modules\Lead\Models\Lead;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -25,6 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         Page::class => PagePolicy::class,
         Email::class => EmailPolicy::class,
         Lead::class => LeadPolicy::class,
+        User::class => UserPolicy::class
 
     ];
 

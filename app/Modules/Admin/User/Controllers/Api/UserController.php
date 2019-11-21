@@ -15,7 +15,43 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        //check access
+        $this->authorize('view', new User());
+
+        /** @var Collection $users */
+        $users = User::with('roles')->get();
+        $users->transform(function ($item) {
+            $item->rolename = "";
+            if (isset($item->roles)) {
+                $item->rolename = isset($item->roles->first()->name) ? $item->roles->first()->name : "";
+            }
+
+            return $item;
+        });
+
+        //send response
+        return response()->json([
+            'users' => $users->toArray(),
+        ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function usersGate()
+    {
+        //check access
+        $this->authorize('view', new User());
+
+        /** @var Collection $users */
+        $users = User::with('roles')->where('active', '1')->get();
+
+        //send response
+        return response()->json([
+            'users' => $users->toArray(),
+        ]);
     }
 
     /**
