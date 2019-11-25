@@ -9,6 +9,7 @@
 namespace App\Modules\Admin\Lead\Models\Traits;
 
 
+use App\Modules\Admin\Task\Models\Task;
 use App\Modules\Lead\Models\Lead;
 use App\Modules\LeadComment\Models\LeadComment;
 
@@ -18,10 +19,10 @@ trait UserLeadsTrait
         return $this->hasMany(Lead::class);
     }
     public function tasks() {
-        return $this->hasMany('App\Models\Task');
+        return $this->hasMany(Task::class);
     }
     public function responsibleTasks() {
-        return $this->hasMany('App\Models\Task','responsible_id','id');
+        return $this->hasMany(Task::class,'responsible_id','id');
     }
     public function comments() {
         return $this->hasMany(LeadComment::class);

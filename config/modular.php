@@ -31,6 +31,8 @@ return [
             'Dashboard',
             'Auth',
             'Lead',
+            'Task',
+            'TaskComment',
 
         ],
         'Pub' => [
