@@ -4,6 +4,7 @@ namespace App\Modules\Admin\Lead\Controllers\Api;
 
 use App\Modules\Admin\Lead\Models\Status;
 use App\Modules\Admin\Lead\Requests\StoreLead;
+use App\Modules\Admin\User\Models\User;
 use App\Modules\Lead\Models\Lead;
 use App\Modules\LeadComment\Services\LeadCommentService;
 use Carbon\Carbon;
@@ -454,7 +455,14 @@ class LeadsController extends Controller
         ]);
     }
 
+    /**
+     * @return null
+     */
     private function robot_id(){
-        return User::where('email','automatic@bleecer.uk')->first()->id;
+        $user = User::where('email','automatic@admin.com')->first();
+        if($user) {
+            return $user->id;
+        }
+        return null;
     }
 }
