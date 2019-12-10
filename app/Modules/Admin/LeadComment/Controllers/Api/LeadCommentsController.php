@@ -59,11 +59,11 @@ class LeadCommentsController extends Controller
             $user = Auth::user();
 
             if(!empty($request->status_id) && $request->status_id != $lead->status_id) {
-                $bot_id = User::where('email','automatic@bleecer.uk')->first()->id;
+                /*$bot_id = User::where('email','automatic@bleecer.uk')->first()->id;
                 //update lead
                 if ($lead->user_id == $bot_id){
                     $lead->user_id = $user->id;
-                }
+                }*/
 
                 $lead->status()->associate($status)->update();
                 //$lead->statuses()->attach($status->id,['created_at' => Carbon::now(),'updated_at' => Carbon::now()]);
