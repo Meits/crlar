@@ -33,6 +33,8 @@ return [
             'Lead',
             'Task',
             'TaskComment',
+            'Status',
+            'LeadComment'
 
         ],
         'Pub' => [

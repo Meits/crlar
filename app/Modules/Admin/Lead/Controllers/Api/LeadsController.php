@@ -46,8 +46,10 @@ class LeadsController extends Controller
                     'phone' => $item->phone,
                     'source_title' => $item->source ? $item->source->title : "",
                     'source_id' => $item->source ? $item->source->id : "",
+                    'unit_id' => $item->unit ? $item->unit->id : "",
                     'unit_title' => $item->unit ? $item->unit->title : "",
                     'unit_color' => $item->unit ? $item->unit->color : "",
+                    'status_id' => $item->status_id,
                     'id' => $item->id,
                     'id_source' => $item->source_id,
                     'created_at' => $item->created_at->timestamp,
@@ -68,7 +70,7 @@ class LeadsController extends Controller
 
         //send response
         return response()->json([
-            'leads' => $resultLeads
+            'leads' => $resultLeads,
 
         ]);
     }

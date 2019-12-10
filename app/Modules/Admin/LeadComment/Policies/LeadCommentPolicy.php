@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modules\LeadComment\Policies;
+namespace App\Modules\Admin\LeadComment\Policies;
 
-use App\Models\User;
+use App\Modules\Admin\User\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class LeadCommmentPolicy
+class LeadCommentPolicy
 {
     use HandlesAuthorization;
 

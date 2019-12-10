@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Modules\LeadComment\Controllers\Api;
+namespace App\Modules\Admin\LeadComment\Controllers\Api;
 
-use App\Models\Lead;
-use App\Models\LeadComment;
-use App\Models\Status;
-use App\Models\User;
-use App\Services\LeadCommentService;
+
+use App\Modules\Admin\Lead\Models\Status;
+use App\Modules\Admin\User\Models\User;
+use App\Modules\Lead\Models\Lead;
+use App\Modules\LeadComment\Models\LeadComment;
+use App\Modules\LeadComment\Services\LeadCommentService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -46,7 +47,7 @@ class LeadCommentsController extends Controller
         $this->authorize('edit', LeadComment::class);
 
         /** @var Lead $lead */
-        $lead = Lead::findOrFail($request->leadId);
+        $lead = Lead::findOrFail($request->lead_id);
         if($lead) {
 
             if(!empty($request->status_id)) {
@@ -100,14 +101,24 @@ class LeadCommentsController extends Controller
             'status' => 'success',
             'lead' => array(
                 'count_create' => $lead->count_create,
-                'link'  => $lead->link,
-                'phone'  => $lead->phone,
-                'source_title'  => $lead->source->title,
-                'source_id'  => $lead->source->id,
-                'unit_title'  => $lead->unit->title,
-                'status' =>$lead->status->id,
-                'id'  => $lead->id,
-                'created_at' => $lead->created_at->toDateTimeString(),
+                'link' => $lead->link,
+                'phone' => $lead->phone,
+                'source_title' => $lead->source ? $lead->source->title : "",
+                'source_id' => $lead->source ? $lead->source->id : "",
+                'unit_id' => $lead->unit ? $lead->unit->id : "",
+                'unit_title' => $lead->unit ? $lead->unit->title : "",
+                'unit_color' => $lead->unit ? $lead->unit->color : "",
+                'status_id' => $lead->status_id,
+                'id' => $lead->id,
+                'id_source' => $lead->source_id,
+                'created_at' => $lead->created_at->timestamp,
+                'created_at_o' => $lead->created_at->toDateTimeString(),
+                'updated_at' => $lead->update_at,
+                'is_processed' => $lead->is_processed ? true : false,
+                'is_express_delivery' => $lead->is_express_delivery ? true : false,
+                'is_add_sale' => $lead->is_add_sale ? true : false,
+                'isQualityLead' => $lead->isQualityLead ? true : false,
+                'user_id' => $lead->user_id,
                 'lastComment' => isset($lead->lastComment()->comment_value) ? $lead->lastComment()->comment_value : "",
             )
         ]);
