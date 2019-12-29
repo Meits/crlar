@@ -9,5 +9,7 @@ Route::group(['prefix' => 'leads', 'middleware' => ['auth:api']], function () {
 
     Route::get('/addSale/count', 'Api\LeadsController@getDddSalesCount')->name('leads-add-sales-count');
     Route::post('/create/check', 'Api\LeadsController@checkExist')->name('leads.create.check');
+    Route::put('/update/quality/{lead}', 'Api\LeadsController@updateQuality')->name('leads.update.quality');
+    Route::get('/archive/index', 'Api\LeadsController@archive')->name('leads.archive.index');
 });
 

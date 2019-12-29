@@ -185,6 +185,9 @@ return [
         \App\Providers\SettingsServiceProvider::class,
         \App\Providers\ObserverServiceProvider::class,
 
+        'App\Services\Date\DateCheckServiceProvider',
+        Maatwebsite\Excel\ExcelServiceProvider::class
+
     ],
 
     /*
@@ -238,6 +241,9 @@ return [
 
         'Menu'      => Lavary\Menu\Facade::class,
         'LocalizationService' => App\Services\Localization\LocalizationService::class,
+        'DateService' => App\Services\Date\DateService::class,
+
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

@@ -34,7 +34,8 @@ return [
             'Task',
             'TaskComment',
             'Status',
-            'LeadComment'
+            'LeadComment',
+            'Analitics'
 
         ],
         'Pub' => [
