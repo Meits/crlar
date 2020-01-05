@@ -5,6 +5,7 @@ namespace App\Modules\Admin\TaskComment\Controllers\Api;
 
 use App\Modules\Admin\Lead\Models\Status;
 use App\Modules\Admin\Task\Models\Task;
+use App\Modules\Admin\TaskComment\Models\TaskComment;
 use App\Modules\Admin\TaskComment\Services\TaskCommentService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -24,7 +25,7 @@ class TasksCommentsController extends Controller
         $this->authorize('edit', TaskComment::class);
 
         /** @var Task $task */
-        $task = Task::findOrFail($request->taskId);
+        $task = Task::findOrFail($request->task_id);
         if($task) {
 
             /** @var Status $status */
@@ -33,7 +34,7 @@ class TasksCommentsController extends Controller
             /** @var User $user */
             $user = Auth::user();
 
-            $task->responsible_id = $request->responsibleId;
+            $task->responsible_id = $request->responsible_id;
 
             if($request->status_id != $task->status_id) {
                 //update lead
@@ -71,6 +72,7 @@ class TasksCommentsController extends Controller
                 'responsible_id' => $task->responsible_id,
                 'id'  => $task->id,
                 'status' => $task->status->id,
+                'status_id' => $task->status->id,
                 'author' => $task->user->name,
                 'created_at' => $task->created_at->toDateTimeString(),
                 'created_at' => $task->created_at->timestamp,

@@ -7,4 +7,6 @@ Route::group(['prefix' => 'tasks', 'middleware' => ['auth:api']], function () {
     Route::put('/{task}', 'Api\TasksController@update')->name('api.tasks.update');
     Route::delete('/{task}', 'Api\TasksController@destroy')->name('api.tasks.delete');
 
+    Route::get('/archive/index', 'Api\TasksController@archive')->name('tasks.archive.index');
+
 });
