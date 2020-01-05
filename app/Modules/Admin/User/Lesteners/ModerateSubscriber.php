@@ -28,7 +28,7 @@ class ModerateSubscriber
     public function handle(Moderate $event)
     {
         if (! app()->runningInConsole()) {
-            \dispatch(new SendModerateEmail($event->user));
+            //\dispatch(new SendModerateEmail($event->user));
         }
     }
 }
