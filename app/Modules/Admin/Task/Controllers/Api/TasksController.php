@@ -49,7 +49,7 @@ class TasksController extends Controller
                     'status' => $item->status->title_ru,
                     'status_id' => $item->status->id,
                     'user_id' => $item->user_id,
-                    'author' => $item->user->name,
+                    'author' => $item->user->firstname,
                     'responsible_id' => $item->responsible_id,
                     'created_at' => $item->created_at->timestamp,
                     'created_at_o' => $item->created_at->toDateTimeString(),
@@ -106,7 +106,7 @@ class TasksController extends Controller
                 'id' => $item->id,
                 'id_source' => $item->source_id,
                 'user_id' => $item->user_id,
-                'author' => $item->user->name,
+                'author' => $item->user->firstname,
                 'status' => $item->status->title_ru,
                 'status_id' => $item->status->id,
                 'responsible_id' => $item->responsible_id,
@@ -153,7 +153,7 @@ class TasksController extends Controller
 
         //first comment save
         if (isset($request->text) && $request->text != "") {
-            $tmpText = "Пользователь <strong>" . $user->name . ' ' . $user->lastname . '</strong> оставил <strong>комментарий</strong> ' . $request->text;
+            $tmpText = "Пользователь <strong>" . $user->firstname . ' ' . $user->lastname . '</strong> оставил <strong>комментарий</strong> ' . $request->text;
             TaskCommentService::saveComment($tmpText, $task, $user, $status, $request->text);
         }
 
@@ -168,7 +168,7 @@ class TasksController extends Controller
                 'unit_title' => isset($task->unit->title) ? $task->unit->title : "",
                 'unit_color' => isset($task->unit->color) ? $task->unit->color : "",
                 'user_id' => $task->user_id,
-                'author' => $task->user->name,
+                'author' => $task->user->firstname,
                 'responsible_id' => $task->responsible_id,
                 'id' => $task->id,
                 'status' => $task->status->title_ru,
@@ -201,7 +201,7 @@ class TasksController extends Controller
                 'unit_title' => isset($task->unit->title) ? $task->unit->title : "",
                 'unit_color' => isset($task->unit->color) ? $task->unit->color : "",
                 'id' => $task->id,
-                'author' => $task->user->name,
+                'author' => $task->user->firstname,
                 'responsible_id' => $task->responsible_id,
                 'status' => $task->status->title_ru,
                 'status_id' => $task->status->id,

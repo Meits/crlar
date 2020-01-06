@@ -73,8 +73,8 @@ class LoginController extends Base
     protected function authenticated(Request $request, $user)
     {
         //set api token
-        $user->api_token = Str::random(60);
-        $user->update();
+        //$user->api_token = Str::random(60);
+        //$user->update();
 
     }
 

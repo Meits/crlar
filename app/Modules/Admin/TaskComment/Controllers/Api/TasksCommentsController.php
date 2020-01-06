@@ -42,7 +42,7 @@ class TasksCommentsController extends Controller
                 //$lead->statuses()->attach($status->id,['created_at' => Carbon::now(),'updated_at' => Carbon::now()]);
 
                 //first comment save
-                $tmpText = "Пользователь <strong>" . $user->name.' '.$user->lastname . '</strong> изменил <strong>статус</strong> на '. $status->title_ru;
+                $tmpText = "Пользователь <strong>" . $user->firstname.' '.$user->lastname . '</strong> изменил <strong>статус</strong> на '. $status->title_ru;
                 TaskCommentService::saveComment($tmpText, $task, $user, $status);
 
             }
@@ -52,7 +52,7 @@ class TasksCommentsController extends Controller
 
             //first comment save
             if(isset($request->text) && $request->text != "") {
-                $tmpText = "Пользователь <strong>" . $user->name.' '.$user->lastname . '</strong> оставил <strong>комментарий</strong> '. $request->text;
+                $tmpText = "Пользователь <strong>" . $user->firstname.' '.$user->lastname . '</strong> оставил <strong>комментарий</strong> '. $request->text;
                 TaskCommentService::saveComment($tmpText, $task, $user, $status, $request->text);
 
             }
@@ -73,7 +73,7 @@ class TasksCommentsController extends Controller
                 'id'  => $task->id,
                 'status' => $task->status->id,
                 'status_id' => $task->status->id,
-                'author' => $task->user->name,
+                'author' => $task->user->firstname,
                 'created_at' => $task->created_at->toDateTimeString(),
                 'created_at' => $task->created_at->timestamp,
                 'created_at_o' => $task->created_at->toDateTimeString(),

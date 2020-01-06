@@ -70,7 +70,7 @@ class LeadCommentsController extends Controller
                 $is_event = true;/*признак события в лидах*/
 
                 //first comment save
-                $tmpText = "Пользователь <strong>" . $user->name.' '.$user->lastname . '</strong> изменил <strong>статус</strong> на '. $status->title_ru;
+                $tmpText = "Пользователь <strong>" . $user->firstname.' '.$user->lastname . '</strong> изменил <strong>статус</strong> на '. $status->title_ru;
                 LeadCommentService::saveComment($tmpText, $lead, $user, $status,null, $is_event);
 
             }
@@ -82,14 +82,14 @@ class LeadCommentsController extends Controller
                 //$lead->statuses()->attach($status->id,['created_at' => Carbon::now(),'updated_at' => Carbon::now()]);
                 $is_event = true;/*признак события в лидах*/
                 //first comment save
-                $tmpText = "Пользователь <strong>" . $user->name.' '.$user->lastname . '</strong> изменил <strong>автора</strong> на '. $author_change->name;
+                $tmpText = "Пользователь <strong>" . $user->firstname.' '.$user->lastname . '</strong> изменил <strong>автора</strong> на '. $author_change->firstname;
                 LeadCommentService::saveComment($tmpText, $lead, $user, $status,null, $is_event);
 
             }
 
             //first comment save
             if(isset($request->text) && $request->text != "") {
-                $tmpText = "Пользователь <strong>" . $user->name.' '.$user->lastname . '</strong> оставил <strong>комментарий</strong> '. $request->text;
+                $tmpText = "Пользователь <strong>" . $user->firstname.' '.$user->lastname . '</strong> оставил <strong>комментарий</strong> '. $request->text;
                 LeadCommentService::saveComment($tmpText, $lead, $user, $status, $request->text);
 
             }

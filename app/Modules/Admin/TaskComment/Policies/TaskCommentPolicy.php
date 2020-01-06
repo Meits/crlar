@@ -25,7 +25,7 @@ class TaskCommentPolicy
      */
     public function view(User $user)
     {
-        return $user->canDo('DASHBOARD_VIEW');
+        return $user->canDo('TASKS_VIEW');
     }
 
     /**
@@ -34,7 +34,7 @@ class TaskCommentPolicy
      */
     public function save(User $user)
     {
-        return $user->canDo('LEADS_CREATE');
+        return $user->canDo('TASKS_CREATE');
     }
 
     /**
@@ -43,7 +43,7 @@ class TaskCommentPolicy
      */
     public function edit(User $user)
     {
-        return $user->canDo('LEADS_EDIT');
+        return $user->canDo('TASKS_EDIT');
     }
 
     /**
@@ -52,6 +52,6 @@ class TaskCommentPolicy
      */
     public function delete(User $user)
     {
-        return $user->canDo('LEADS_EDIT');
+        return $user->canDo('TASKS_EDIT');
     }
 }

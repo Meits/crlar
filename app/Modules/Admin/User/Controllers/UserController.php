@@ -22,6 +22,7 @@ class UserController extends Base
         2 => 'InActive',
         3 => 'Deleted',
         4 => 'Archive',
+        0 => 'InActive',
     ];
 
     /**

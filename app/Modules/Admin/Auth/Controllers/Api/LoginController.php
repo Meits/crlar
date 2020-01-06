@@ -64,6 +64,7 @@ class LoginController extends Base
             ], 400);
         }
 
+        $this->authenticated($request, $this->guard()->user());
         return response(Auth::user()->toArray());
     }
 

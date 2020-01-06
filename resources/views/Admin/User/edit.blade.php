@@ -102,7 +102,7 @@
                                     class="text-danger">*</span></label>
                         <div class="col-lg-10">
                             <div class="input-group">
-                                <input type="text" name="phone" required class="form-control"
+                                <input type="text" name="phone" class="form-control"
                                        value="{{$user->phone}}"
                                        placeholder="{{__('admin.users_form_phone_label')}}">
                             </div>

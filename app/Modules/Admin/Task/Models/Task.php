@@ -42,7 +42,7 @@ class Task extends Model
                     ]);
             });
 
-            if($user->hasRole('Manager')) {
+            if($user->hasRole('manager')) {
                 $builder->where(function ($query) use ($user) {
                     $query
                         ->where('user_id', $user->id)
@@ -75,7 +75,7 @@ class Task extends Model
                     ->where('status_id', 3);
             });
 
-            if($user->hasRole('Manager')) {
+            if($user->hasRole('manager')) {
                 $builder->where(function ($query) use ($user) {
                     $query
                         ->where('user_id', $user->id)

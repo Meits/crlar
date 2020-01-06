@@ -199,13 +199,13 @@ class LeadsController extends Controller
 
         //first comment save
         if (isset($request->text) && $request->text != "") {
-            $tmpText = "Пользователь <strong>" . $user->name . ' ' . $user->lastname . '</strong> оставил <strong>комментарий</strong> ' . $request->text;
+            $tmpText = "Пользователь <strong>" . $user->firstname . ' ' . $user->lastname . '</strong> оставил <strong>комментарий</strong> ' . $request->text;
             LeadCommentService::saveComment($tmpText, $lead, $user, $status, $request->text);
         }
 
         $is_event = true;/*признак события в лидах*/
         /**Автор лида* создал лид *дата и время создания* со статусом *статус**/
-        $tmpText = "Автор <strong>" . $user->name . ' ' . $user->lastname . '</strong> создал лид ' . Carbon::now() . ' <strong> со статусом</strong> ' . $status->title_ru;
+        $tmpText = "Автор <strong>" . $user->firstname . ' ' . $user->lastname . '</strong> создал лид ' . Carbon::now() . ' <strong> со статусом</strong> ' . $status->title_ru;
         LeadCommentService::saveComment($tmpText, $lead, $user, $status, $request->text, $is_event);
 
 
@@ -259,7 +259,7 @@ class LeadsController extends Controller
                 'unit_title' => $lead->unit->title,
                 'unit_color' => $lead->unit->color,
                 'id' => $lead->id,
-                'author' => $lead->user->name,
+                'author' => $lead->user->firstname,
                 'status' => $lead->status->title_ru,
                 'status_id' => $lead->status->id,
                 'is_processed' => $lead->is_processed ? true : false,
@@ -321,7 +321,7 @@ class LeadsController extends Controller
 
         //first comment save
         if (!empty($request->text)) {
-            $tmpText = "Пользователь <strong>" . $user->name . ' ' . $user->lastname . '</strong> оставил <strong>комментарий</strong> ' . (isset($request->text) ? $request->text : '');
+            $tmpText = "Пользователь <strong>" . $user->firstname . ' ' . $user->lastname . '</strong> оставил <strong>комментарий</strong> ' . (isset($request->text) ? $request->text : '');
             LeadCommentService::saveComment($tmpText, $lead, $user, $status);
         }
 
@@ -334,27 +334,27 @@ class LeadsController extends Controller
         if ($tmp->source_id != $lead->source_id) {
             //first comment save
             $is_event = true;/*признак события в лидах*/
-            $tmpText = "Пользователь <strong>" . $user->name . ' ' . $user->lastname . '</strong> изменил <strong>источник</strong> на ' . $lead->source->title;
+            $tmpText = "Пользователь <strong>" . $user->firstname . ' ' . $user->lastname . '</strong> изменил <strong>источник</strong> на ' . $lead->source->title;
             LeadCommentService::saveComment($tmpText, $lead, $user, $status,null,$is_event);
         }
 
         if ($tmp->unit_id != $lead->unit_id) {
             //first comment save
             $is_event = true;/*признак события в лидах*/
-            $tmpText = "Пользователь <strong>" . $user->name . ' ' . $user->lastname . '</strong> изменил <strong>подразделение</strong> на ' . $lead->unit->title;
+            $tmpText = "Пользователь <strong>" . $user->firstname . ' ' . $user->lastname . '</strong> изменил <strong>подразделение</strong> на ' . $lead->unit->title;
             LeadCommentService::saveComment($tmpText, $lead, $user, $status,null,$is_event);
         }
 
         if ($tmp->status_id != $lead->status_id) {
             //first comment save
             $is_event = true;/*признак события в лидах*/
-            $tmpText = "Пользователь <strong>" . $user->name . ' ' . $user->lastname . '</strong> изменил <strong>статус</strong> на ' . $lead->status->title_ru;
+            $tmpText = "Пользователь <strong>" . $user->firstname . ' ' . $user->lastname . '</strong> изменил <strong>статус</strong> на ' . $lead->status->title_ru;
             LeadCommentService::saveComment($tmpText, $lead, $user, $status,null,$is_event);
         }
 
         $is_event = true;/*признак события в лидах*/
         /**Автор лида* создал лид *дата и время создания* со статусом *статус**/
-        $tmpText = "Автор <strong>" . $user->name . ' ' . $user->lastname . ' </strong>создал лид ' . Carbon::now() . ' <strong>со статусом</strong> ' . $status->title_ru;
+        $tmpText = "Автор <strong>" . $user->firstname . ' ' . $user->lastname . ' </strong>создал лид ' . Carbon::now() . ' <strong>со статусом</strong> ' . $status->title_ru;
         LeadCommentService::saveComment($tmpText, $lead, $user, $status, $request->text, $is_event);
 
         //send response
@@ -407,7 +407,7 @@ class LeadsController extends Controller
                 'unit_title' => $lead->unit->title,
                 'unit_color' => $lead->unit->color,
                 'id' => $lead->id,
-                'author' => $lead->user->name,
+                'author' => $lead->user->firstname,
                 'status' => $lead->status->title_ru,
                 'is_processed' => $lead->is_processed ? true : false,
                 'is_express_delivery' => $lead->is_express_delivery ? true : false,
